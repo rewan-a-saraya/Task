@@ -31,3 +31,36 @@ for idx in range(k):
     clusters[idx] = cluster
 
 clusters
+
+#count.K-means Clustering
+
+
+#count.K-means Clustering
+
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+
+
+X, y = load_iris(return_X_y=True)
+
+#Find optimum number of cluster
+sse = [] #SUM OF SQUARED ERROR
+for k in range(1,11):
+    km = KMeans(n_clusters=k, random_state=2)
+    km.fit(X)
+    sse.append(km.inertia_)
+
+    sns.set_style("whitegrid")
+g=sns.lineplot(x=range(1,11), y=sse)
+
+g.set(xlabel ="Number of cluster (k)",
+      ylabel = "Sum Squared Error",
+      title ='Elbow Method')
+
+plt.show()
